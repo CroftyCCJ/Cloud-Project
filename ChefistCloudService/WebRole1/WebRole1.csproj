@@ -202,6 +202,9 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\User\Recipes.cshtml" />
     <Content Include="Views\Shared\_Main.cshtml" />
+    <Content Include="Views\Home\Browse.cshtml" />
+    <Content Include="Views\Auth\Logout.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

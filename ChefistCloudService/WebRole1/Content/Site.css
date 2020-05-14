@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: whitesmoke;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -20,5 +21,44 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 100%;
+}
+
+.contain-input {
+    max-width: 250px;
+}
+
+.card {
+    background-color: white;
+    padding: 10px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.card-header {
+    padding-top: 10px;
+    font-size: x-large;
+   
+}
+
+.card-img-top {
+    border-radius: 5px;
+}
+
+.top-card-section {
+    border-bottom: 0.5px solid #ccc;
+    padding-bottom:5px;
+}
+
+.padding-0-r {
+    padding-right: 0;
+
+}
+.padding-0-l {
+
+    padding-left: 0;
+}
+.contain-search{
+    padding-left: 15px;
+    padding-right:20px;
 }

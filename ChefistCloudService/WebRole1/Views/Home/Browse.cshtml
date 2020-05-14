@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Browse Recipes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Browse Recipes</h2>
+<br />
+@*--------SEARCH BAR-------*@
+<div class="contain-search">
+    <div class="row">
+        <form action="/home/browse" method="get" id="search">
+            <div class="col-xs-10 padding-0-r padding-0-l ">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="str" name="str" placeholder="vegetable lasagne">
+                </div>
+            </div>
+            <div class="col-xs-2 padding-0-l">
+                <button type="submit" class="btn btn-info mb-2">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+@*--------RESULTS-------*@
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="embed-responsive embed-responsive-16by9">
+                <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg" class="card-img-top embed-responsive-item" alt="Image of burrito">
+            </div>
+            <div class="top-card-section">
+                <div class="card-header">
+                    Burrito
+                </div>
+                <small class="text-muted">Tex-Mex</small>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Description like a lot of long text that should be trimmed....</p>
+                <a href="#" class="btn btn-primary "><i class="far fa-eye"></i></a>
+            </div>
+
+        </div>
+
+        <br />
+    </div>
+
+</div>
+

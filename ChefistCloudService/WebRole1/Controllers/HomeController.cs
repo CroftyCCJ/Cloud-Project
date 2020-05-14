@@ -13,26 +13,41 @@ namespace WebRole1.Controllers
             return View();
         }
 
-       
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact us";
 
             return View();
         }
 
         public ActionResult Session()
         {
-
             return View();
         }
+
+        public ActionResult Browse()
+        {
+            
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Browse(string str)
+
+        {
+            
+            return View();
+        }
+
+
     }
+    
 }

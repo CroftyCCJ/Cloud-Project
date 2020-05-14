@@ -15,6 +15,7 @@ namespace WebRole1.Controllers
         }
 
         // GET: Recipe
+        [HttpGet]
         public ActionResult Index(int id)
         {
             return View();
