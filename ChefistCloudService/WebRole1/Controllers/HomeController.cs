@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebRole1.Models;
 
 namespace WebRole1.Controllers
 {
@@ -36,6 +37,14 @@ namespace WebRole1.Controllers
         public ActionResult Browse()
         {
             
+            IEnumerable<SelectListItem> items = Enum.GetNames(typeof(Cuisine)).Select(name => new SelectListItem()
+            {
+                Text = name,
+                Value = name
+            });
+
+            ViewBag.Cuisines = items;
+
             return View();
         }
 

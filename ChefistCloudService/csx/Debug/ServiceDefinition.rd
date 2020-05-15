@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ChefistCloudService" generation="1" functional="0" release="0" Id="b0c93ed3-6835-4ee1-ae49-559b3276e0b5" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ChefistCloudService" generation="1" functional="0" release="0" Id="e478fe76-9ad7-40a8-8371-63e7692e661b" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="ChefistCloudServiceGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="fe8b6f1e-d3ab-4456-9cd9-d91646fdfe1f" ref="Microsoft.RedDog.Contract\ServiceContract\ChefistCloudServiceContract@ServiceDefinition">
+    <implementation Id="0e4b242b-135a-4523-a282-033d38ca17f0" ref="Microsoft.RedDog.Contract\ServiceContract\ChefistCloudServiceContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="2e12da42-486a-4bf7-8c45-29b880a0d933" ref="Microsoft.RedDog.Contract\Interface\WebRole1:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="1a60438b-caaa-4f31-8e08-2413c055dcba" ref="Microsoft.RedDog.Contract\Interface\WebRole1:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/ChefistCloudService/ChefistCloudServiceGroup/WebRole1:Endpoint1" />
           </inPort>

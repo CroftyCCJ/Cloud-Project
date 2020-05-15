@@ -1,7 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
     background-color: whitesmoke;
+    padding-top: 85px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -11,10 +10,15 @@
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+   will truncate terms that are too long to fit in the left column */
+
 .dl-horizontal dt {
     white-space: normal;
+}
+
+.brand-name {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 40px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -28,27 +32,27 @@ textarea {
     max-width: 250px;
 }
 
-.card {
+/*.card {
     background-color: white;
     padding: 10px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
     border-radius: 10px;
-}
+}*/
 
-.card-header {
+/*.card-header {
     padding-top: 10px;
     font-size: x-large;
    
-}
+}*/
 
-.card-img-top {
+/*.card-img-top {
     border-radius: 5px;
-}
+}*/
 
-.top-card-section {
+/*.top-card-section {
     border-bottom: 0.5px solid #ccc;
     padding-bottom:5px;
-}
+}*/
 
 .padding-0-r {
     padding-right: 0;
