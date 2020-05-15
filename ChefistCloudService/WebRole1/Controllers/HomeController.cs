@@ -36,26 +36,33 @@ namespace WebRole1.Controllers
 
         public ActionResult Browse()
         {
-            
-            IEnumerable<SelectListItem> items = Enum.GetNames(typeof(Cuisine)).Select(name => new SelectListItem()
-            {
-                Text = name,
-                Value = name
-            });
-
-            ViewBag.Cuisines = items;
+           
 
             return View();
         }
 
         [HttpGet]
-        public ActionResult Browse(string str)
+        public ActionResult Browse(string search)
 
         {
-            
+            //perform db search based on search string
+
+            ViewBag.ShowResult = "";
+
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Browse(ModelCuisine num )
+        {
+            EnumCuisine cuisine = (EnumCuisine) num.EnumCuisine;
+
+            //perform filter actions with cuisine choice
+            
+            ViewBag.ShowResult = cuisine;
+
+            return View();
+        }
 
     }
     

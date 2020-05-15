@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,7 +14,7 @@ namespace WebRole1.Models
         public int Owner { get; set; }
         public string Ingredients { get; set; }
         public string Description { get; set; }
-        public Cuisine Cuisine { get; set; }
+        public EnumCuisine Cuisine { get; set; }
 
         public Recipe()
         {
@@ -20,7 +22,15 @@ namespace WebRole1.Models
         }
 
     }
-    public enum Cuisine
+
+    public class ModelCuisine
+    {
+        [DisplayName("Cuisine")]
+        [Required]
+        public EnumCuisine? EnumCuisine { get; set; }
+    }
+
+    public enum EnumCuisine 
     {
         American,
         BBQ,
