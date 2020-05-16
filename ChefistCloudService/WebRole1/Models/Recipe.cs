@@ -15,7 +15,7 @@ namespace WebRole1.Models
         public int Owner { get; set; }
         public string Ingredients { get; set; }
         public string Description { get; set; }
-        public EnumCuisine Cuisine { get; set; }
+        public EnumCuisine? Cuisine { get; set; }
 
         public Recipe()
         {
@@ -24,13 +24,13 @@ namespace WebRole1.Models
 
     }
 
-    public class ModelCuisine
-    {
-        [Display(Name = "Nature of your inquiry")]
-        [EnumDataType(typeof(EnumCuisine))]
-        public EnumCuisine? EnumCuisine { get; set; }
+    //public class ModelCuisine
+    //{
+    //    [Display(Name = "Nature of your inquiry")]
+    //    [EnumDataType(typeof(EnumCuisine))]
+    //    public EnumCuisine? EnumCuisine { get; set; }
         
-    }
+    //}
 
     public enum EnumCuisine 
     {

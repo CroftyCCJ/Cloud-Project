@@ -48,29 +48,28 @@ namespace WebRole1.Controllers
 
         {
 
-           // ModelCuisine modelcuisine = new ModelCuisine { EnumCuisine = EnumCuisine.All };
 
             //perform db search based on search string
 
            
-            ViewBag.ShowResult = "";
+            ViewBag.ShowResult = search;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Browse(ModelCuisine num )
+        public ActionResult Browse(Recipe filter)
         {
             //if no cuisine is selected
-            if (num.EnumCuisine == null)
+            if (filter.Cuisine == null)
             {
                 // select all cuisines
                 ViewBag.ShowResult = "No cuisine chosen"; //for debug purposes
             }
             else
             {
-                Console.Write(num);
-                EnumCuisine cuisine = (EnumCuisine)num.EnumCuisine;
+                
+                EnumCuisine cuisine = (EnumCuisine)filter.Cuisine;
                 //perform filter actions with cuisine choice
                 ViewBag.ShowResult = cuisine; //for debug purposes
 

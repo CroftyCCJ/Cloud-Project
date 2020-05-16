@@ -1,4 +1,4 @@
-﻿@model WebRole1.Models.ModelCuisine
+﻿@model WebRole1.Models.Recipe
 
 @{
     ViewBag.Title = "Browse Recipes";
@@ -19,7 +19,7 @@
 </form>
 @*--------FILTER-------*@
 <form action="/Home/Browse" method="post" id="filter">
-    @Html.EnumDropDownListFor(model => model.EnumCuisine, "Show all cuisines", new {@class = "form-control", onchange = "this.form.submit();" })
+    @Html.EnumDropDownListFor(model => model.Cuisine, "Show all cuisines", new {@class = "form-control", onchange = "this.form.submit();" })
 </form>
     <br />
 @ViewBag.ShowResult
