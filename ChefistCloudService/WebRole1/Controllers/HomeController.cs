@@ -9,6 +9,8 @@ namespace WebRole1.Controllers
 {
     public class HomeController : Controller
     {
+        private List<Recipe> recipeResults = new List<Recipe>();
+
         public ActionResult Index()
         {
             return View();
@@ -45,8 +47,12 @@ namespace WebRole1.Controllers
         public ActionResult Browse(string search)
 
         {
+
+           // ModelCuisine modelcuisine = new ModelCuisine { EnumCuisine = EnumCuisine.All };
+
             //perform db search based on search string
 
+           
             ViewBag.ShowResult = "";
 
             return View();
@@ -55,11 +61,20 @@ namespace WebRole1.Controllers
         [HttpPost]
         public ActionResult Browse(ModelCuisine num )
         {
-            EnumCuisine cuisine = (EnumCuisine) num.EnumCuisine;
+            //if no cuisine is selected
+            if (num.EnumCuisine == null)
+            {
+                // select all cuisines
+                ViewBag.ShowResult = "No cuisine chosen"; //for debug purposes
+            }
+            else
+            {
+                Console.Write(num);
+                EnumCuisine cuisine = (EnumCuisine)num.EnumCuisine;
+                //perform filter actions with cuisine choice
+                ViewBag.ShowResult = cuisine; //for debug purposes
 
-            //perform filter actions with cuisine choice
-            
-            ViewBag.ShowResult = cuisine;
+            }
 
             return View();
         }

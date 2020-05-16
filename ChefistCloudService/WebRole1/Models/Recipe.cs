@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebRole1.Models
 {
@@ -25,25 +26,30 @@ namespace WebRole1.Models
 
     public class ModelCuisine
     {
-        [DisplayName("Cuisine")]
-        [Required]
+        [Display(Name = "Nature of your inquiry")]
+        [EnumDataType(typeof(EnumCuisine))]
         public EnumCuisine? EnumCuisine { get; set; }
+        
     }
 
     public enum EnumCuisine 
     {
-        American,
-        BBQ,
-        Chinese,
-        EasternEuropean,
-        French,
-        German,
-        Indian,
-        Japanese,
-        Mexican,
-        MiddleEastern,
-        Russian,
-        Scandinavian
+        
+       
+        American = 1,
+        BBQ = 2,
+        Chinese = 3,
+        [Display(Name = "Eastern European")]
+        EasternEuropean = 4,
+        French = 5,
+        German = 6,
+        Indian = 7,
+        Japanese = 8,
+        Mexican = 9,
+        [Display(Name = "Middle Eastern")]
+        MiddleEastern = 10,
+        Russian = 11,
+        Scandinavian = 12
     }
 }
 

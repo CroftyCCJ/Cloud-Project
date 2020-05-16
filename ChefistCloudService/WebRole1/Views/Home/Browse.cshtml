@@ -19,7 +19,7 @@
 </form>
 @*--------FILTER-------*@
 <form action="/Home/Browse" method="post" id="filter">
-    @Html.EnumDropDownListFor(model => model.EnumCuisine, "Filter Cuisine", new { @class = "form-control", onchange = "this.form.submit();" })
+    @Html.EnumDropDownListFor(model => model.EnumCuisine, "Show all cuisines", new {@class = "form-control", onchange = "this.form.submit();" })
 </form>
     <br />
 @ViewBag.ShowResult
