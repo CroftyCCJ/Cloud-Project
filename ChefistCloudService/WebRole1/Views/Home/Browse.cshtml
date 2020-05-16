@@ -19,26 +19,30 @@
 </form>
 @*--------FILTER-------*@
 <form action="/Home/Browse" method="post" id="filter">
-    @Html.EnumDropDownListFor(model => model.Cuisine, "Show all cuisines", new {@class = "form-control", onchange = "this.form.submit();" })
+    @Html.EnumDropDownListFor(model => model.Cuisine, "Show all cuisines", new { @class = "form-control", onchange = "this.form.submit();" })
 </form>
-    <br />
+<br />
 @ViewBag.ShowResult
-    @*--------RESULTS-------*@
-
-    <div class="row">
+@*--------RESULTS-------*@
+<div class="row">
+    @foreach (var recipe in ViewBag.Recipes)
+    {
         <div class="col-md-3">
             <div class="card mb-3" style="max-width: 540px;">
 
                 <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg" class="card-img" alt="...">
 
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <a href="#" class="btn btn-primary "><i class="far fa-eye"></i></a>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">@Html.Raw((String)recipe.Name)</h5>
+                    <p class="card-text">@Html.Raw((String)recipe.Description)</p>
+                    <a href="/Recipe?id=@Html.Raw((Int32)recipe.RecipeId)" class="btn btn-primary "><i class="far fa-eye"></i></a>
+                    <p class="card-text"><small class="text-muted">@Html.Raw((WebRole1.Models.EnumCuisine)recipe.Cuisine)</small></p>
                 </div>
             </div>
         </div>
+    }
 
-    </div>
+
+
+</div>
 

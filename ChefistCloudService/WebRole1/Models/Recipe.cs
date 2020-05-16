@@ -12,30 +12,31 @@ namespace WebRole1.Models
     {
         public int RecipeId { get; set; }
         public string Name { get; set; }
-        public int Owner { get; set; }
+        public string Owner { get; set; }
         public string Ingredients { get; set; }
         public string Description { get; set; }
         public EnumCuisine? Cuisine { get; set; }
 
+        public Recipe(int id, string name, string owner, string ingredients, string description, EnumCuisine cuisine)
+        {
+            this.RecipeId = id;
+            this.Name = name;
+            this.Owner = owner;
+            this.Ingredients = ingredients;
+            this.Description = description;
+            this.Cuisine = cuisine;
+        }
+
         public Recipe()
         {
-
+            
         }
 
     }
 
-    //public class ModelCuisine
-    //{
-    //    [Display(Name = "Nature of your inquiry")]
-    //    [EnumDataType(typeof(EnumCuisine))]
-    //    public EnumCuisine? EnumCuisine { get; set; }
-        
-    //}
-
     public enum EnumCuisine 
     {
-        
-       
+
         American = 1,
         BBQ = 2,
         Chinese = 3,
