@@ -1,8 +1,61 @@
-﻿
+﻿@model WebRole1.Models.Recipe
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutSession.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+    <br />
 <h2>Create a Recipe</h2>
 
+<form action="/Recipe/ConfirmCreateAsync" method="post">
+    <br />
+        <div class="ImageContainer">
+            <img src="https://image.freepik.com/free-vector/plate-cuttlery-graphic-illustration_53876-9118.jpg" id="imgContainer" style="height: 200px;" />
+        </div>
+        <br />
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Image Url, example: https://example.com/example.jpg" name="imgurl" id="imgurl">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button"  onclick="func()">Preview Image</button>
+        </div>
+
+    </div>
+  
+    <div class="form-group">
+        <label for="description">Short Description</label>
+        <textarea class="form-control" name="description" id="description" rows="2"></textarea>
+        <small id="descriptionHelp" class="form-text text-muted">Max. 140 Characters</small>
+    </div>
+    <div class="form-group">
+        <label for="ingredients">Ingredients</label>
+        <input type="text" class="form-control" id="ingredients" name="ingredients">
+        <small id="ingredientsHelp" class="form-text text-muted">Separate ingredients with a comma. Example: "2 bananas, 10 Tbsp Sugar, 200ml Milk"</small>
+    </div>
+    <div class="form-group">
+        <label for="process">Process Description</label>
+        <textarea class="form-control" id="process" name="process" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="cuisine">Cuisine</label>
+        @Html.EnumDropDownListFor(model => model.Cuisine, "Choose...", new { @class = "form-control" })
+    </div>
+
+
+
+    <input type="submit" class="btn btn-primary" value="Save & Publish Recipe" />
+</form>
+
+<script>
+    function func() {
+        var url = document.getElementById("imgurl").value;
+        if (url == '') {
+            console.log("hello");
+            url = 'https://image.freepik.com/free-vector/plate-cuttlery-graphic-illustration_53876-9118.jpg';
+        }
+        document.getElementById('imgContainer').setAttribute('src', url)
+    }
+</script>
