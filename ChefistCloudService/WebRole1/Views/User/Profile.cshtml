@@ -1,8 +1,68 @@
 ﻿
 @{
     ViewBag.Title = "Profile";
-    Layout = "~/Views/Shared/_LayoutSession.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ 
+
 }
 
 <h2>Profile</h2>
 
+<p>Logged in as: @ViewBag.UserEmail</p>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="recipes-tab" data-toggle="tab" href="#recipes" role="tab" aria-controls="recipes" aria-selected="true">My Recipes</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="profile" aria-selected="false">Comments</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="liked-tab" data-toggle="tab" href="#Liked" role="tab" aria-controls="contact" aria-selected="false">Liked</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="recipes" role="tabpanel" aria-labelledby="recipes-tab">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Cuisine</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var recipe in ViewBag.MyRecipes)
+                {
+                    <tr>
+                        <td>@recipe.Date</td>
+                        <td>@recipe.Name</td>
+                        <td>@recipe.Cuisine</td>
+                        <td>
+                            <form action="/Recipe/Edit" method="post">
+                                <input type="hidden" name="recipeid" value="@recipe.RecipeId" />
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/Recipe/DeleteAsync" method="post">
+                                <input type="hidden" name="recipeid" value="@recipe.RecipeId" />
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">...</div>
+    <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="liked-tab">...</div>
+</div>
+
+<form action="/Recipe/Create" method="post">
+    <button type="submit" class="btn btn-info btn-lg">Create New Recipe</button>
+</form>

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebRole1.Models;
+using WebRole1.Services;
 
 namespace WebRole1.Controllers
 {
     public class HomeController : Controller
     {
-       
-        Recipe recipe1 = new Recipe(54, "Fruit Salad 1", "someuser", "banana, mandarine, apple", "chop everything and throw it together in a bowl", EnumCuisine.MiddleEastern);
-        Recipe recipe2 = new Recipe(55, "Fruit Salad 2", "someuser", "banana, mandarine, apple", "chop everything and throw it together in a bowl", EnumCuisine.MiddleEastern);
-        Recipe recipe3 = new Recipe(56, "Fruit Salad 3", "someuser", "banana, mandarine, apple", "chop everything and throw it together in a bowl", EnumCuisine.MiddleEastern);
+
+        Recipe recipe1 = new Recipe(54, "Fruit Salad 1", "someuser", "banana, mandarine, apple", "chop everything and throw it together in a bowl", DateTime.Today, EnumCuisine.MiddleEastern, "some short description", "url");
+        Recipe recipe2 = new Recipe(55, "Fruit Salad 2", "someuser", "banana, mandarine, apple", "chop everything and throw it together in a bowl", DateTime.Today, EnumCuisine.MiddleEastern, "some short description", "url" );
+        Recipe recipe3 = new Recipe(56, "Fruit Salad 3", "someuser", "banana, mandarine, apple", "chop everything and throw it together in a bowl", DateTime.Today, EnumCuisine.MiddleEastern, "some short description", "url");
 
         List<Recipe> recipeResults = new List<Recipe>();
 
@@ -45,15 +47,12 @@ namespace WebRole1.Controllers
             return View();
         }
 
-        public ActionResult Session()
-        {
-            return View();
-        }
 
         public ActionResult Browse()
         {
-           
 
+            List<Recipe> recipes = DBServices.GetAllRecipes();
+            ViewBag.Recipes = recipes;
             return View();
         }
 
@@ -61,13 +60,20 @@ namespace WebRole1.Controllers
         public ActionResult Browse(string search)
 
         {
-           
-            ViewBag.ShowResult = search;
-            InitializeTest();
-            //QUERY: perform db search based on search string
-            //The result should be a list of Recipe objects (List<Recipe>) 
-            //recipeResults = ...
-            ViewBag.Recipes = recipeResults;
+
+            List<Recipe> recipes;
+            if (String.IsNullOrEmpty(search))
+            {
+                recipes = DBServices.GetAllRecipes();
+               
+            }
+            else
+            {
+               recipes = DBServices.SearchRecipes(search);
+               
+            }
+          
+            ViewBag.Recipes = recipes;
 
             return View();
         }
@@ -75,27 +81,27 @@ namespace WebRole1.Controllers
         [HttpPost]
         public ActionResult Browse(Recipe filter)
         {
+
+            List<Recipe> recipes;
+
             //if no cuisine is selected
             if (filter.Cuisine == null)
             {
-                //QUERY: select all cuisines. 
-                //The result should be a list of Recipe objects (List<Recipe>) 
-                //recipeResults = ...
-                ViewBag.ShowResult = "No cuisine chosen"; //for debug purposes
+
+                recipes = DBServices.GetAllRecipes();
+
             }
             else
             {
                 
                 EnumCuisine cuisine = (EnumCuisine)filter.Cuisine;
-                //QUERY:perform filter actions with cuisine choice
-                //The result should be a list of Recipe objects (List<Recipe>) 
-                //recipeResults = ...
-                ViewBag.ShowResult = cuisine; //for debug purposes
+                recipes = DBServices.FilterRecipes(cuisine.ToString());
 
             }
 
-            InitializeTest(); //for debug purposes
-            ViewBag.Recipes = recipeResults;
+            ViewBag.Recipes = recipes;
+
+
             return View();
         }
 

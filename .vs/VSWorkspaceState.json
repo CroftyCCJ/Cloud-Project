@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ChefistCloudService",
+    "\\ChefistCloudService\\WebRole1",
+    "\\ChefistCloudService\\WebRole1\\App_Start",
+    "\\ChefistCloudService\\WebRole1\\Assets",
+    "\\ChefistCloudService\\WebRole1\\Content",
+    "\\ChefistCloudService\\WebRole1\\Controllers",
+    "\\ChefistCloudService\\WebRole1\\Models",
+    "\\ChefistCloudService\\WebRole1\\Properties"
+  ],
+  "SelectedNode": "\\ChefistCloudService\\SQLSetup.sql",
+  "PreviewInSolutionExplorer": false
+}

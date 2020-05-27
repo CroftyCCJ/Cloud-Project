@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebRole1.Services;
 
 namespace WebRole1.Controllers
 {
@@ -11,13 +13,29 @@ namespace WebRole1.Controllers
         // GET: User
         public ActionResult Index()
         {
+
+
+            
             return View();
         }
 
         [HttpGet]
-        public ActionResult Profile(int id)
+        public new ActionResult Profile()
         {
-            return View();
+            string userid = this.User?.Identity.GetUserId();
+
+            if (String.IsNullOrEmpty(userid))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.UserEmail = User.Identity.GetUserName();
+                ViewBag.MyRecipes = DBServices.GetUserRecipes(User.Identity.GetUserId());
+                return View();
+            }
+
+            
         }
 
         public ActionResult Recipes()

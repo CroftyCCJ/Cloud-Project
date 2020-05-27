@@ -5,10 +5,12 @@
     {
         @Html.AntiForgeryToken()
     <ul  class="navbar-nav">
-        <li class="nav-item ">
+        <li class="nav-item dropdown">
             @* "Home" controller needs to be replaced with "Manage" later *@
             @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Home" })*@
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", new { controller = "Home" }, new { @class = "nav-link active" })
+         
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Profile", new { controller = "User" }, new { @class = "nav-link " })
+           
         </li>
 
 

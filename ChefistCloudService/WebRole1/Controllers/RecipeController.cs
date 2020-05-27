@@ -86,14 +86,65 @@ namespace WebRole1.Controllers
             return RedirectToAction("Index" , null,  new { id = recipeid });
         }
 
-        public ActionResult Edit()
+       
+        [HttpPost]
+        public ActionResult Edit(int recipeid)
         {
-            return View();
+            Recipe recipe = DBServices.GetRecipe(recipeid);
+
+            if (recipe.Owner.Equals(this.User?.Identity.GetUserId()))
+            {
+                ViewBag.Recipe = recipe;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+          
         }
 
-        public ActionResult Delete()
+
+        public async Task<ActionResult> ConfirmEditAsync(string name, string imgurl, string description, string ingredients, string process, EnumCuisine cuisine, int recipeid)
         {
-            return View();
+            
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString);
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue recipesQueue = queueClient.GetQueueReference("updaterecipe");
+
+            var userId = this.User?.Identity.GetUserId();
+
+            Debug.WriteLine("USER ID IS =" + userId);
+
+            string jsonRecipe = JsonSerializer.Serialize(new Recipe(recipeid, name, userId, ingredients, process, DateTime.Today, cuisine, description, imgurl));
+
+            new QueueService().AddMessageToQueue(recipesQueue, jsonRecipe);
+
+            CloudQueue recipesOutQueue = queueClient.GetQueueReference("outrecipe");
+
+            await new QueueService().GetMessageFromQueue(recipesOutQueue);
+
+            return RedirectToAction("Index", null, new { id = recipeid });
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteAsync(int recipeid)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString);
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue recipesQueue = queueClient.GetQueueReference("deleterecipe");
+            QueueService queueService = new QueueService();
+
+            queueService.AddMessageToQueue(recipesQueue, recipeid.ToString());
+
+            CloudQueue recipesOutQueue = queueClient.GetQueueReference("outrecipe");
+
+            await queueService.GetMessageFromQueue(recipesOutQueue);
+
+            return RedirectToAction("Profile", "User");
         }
 
       
