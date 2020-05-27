@@ -1,0 +1,48 @@
+﻿@model WebRole1.Models.Recipe
+
+@{
+    ViewBag.Title = "Browse Recipes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br />
+<h2 style="margin-bottom:20px">Browse Recipes</h2>
+
+@*--------SEARCH BAR-------*@
+<form action="/Home/Browse" method="get" id="search">
+    <div class="input-group mb-3">
+        <input type="text" name="search" class="form-control" placeholder=" E.g. vegetable lasagne, chinese, ..." aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+        </div>
+    </div>
+</form>
+@*--------FILTER-------*@
+<form action="/Home/Browse" method="post" id="filter">
+    @Html.EnumDropDownListFor(model => model.Cuisine, "Show all cuisines", new { @class = "form-control", onchange = "this.form.submit();" })
+</form>
+<br />
+@ViewBag.ShowResult
+@*--------RESULTS-------*@
+<div class="row">
+    @foreach (var recipe in ViewBag.Recipes)
+    {
+        <div class="col-md-3">
+            <div class="card mb-3" style="max-width: 540px;">
+
+                <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg" class="card-img" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title">@Html.Raw((String)recipe.Name)</h5>
+                    <p class="card-text">@Html.Raw((String)recipe.Description)</p>
+                    <a href="/Recipe?id=@Html.Raw((Int32)recipe.RecipeId)" class="btn btn-primary "><i class="far fa-eye"></i></a>
+                    <p class="card-text"><small class="text-muted">@Html.Raw((WebRole1.Models.EnumCuisine)recipe.Cuisine)</small></p>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+</div>
+
