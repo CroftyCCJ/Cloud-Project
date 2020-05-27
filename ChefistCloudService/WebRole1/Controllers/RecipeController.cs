@@ -1,14 +1,28 @@
-﻿using System;
+﻿
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using System.Text;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WebRole1.App_Start;
 using WebRole1.Models;
+using System.Text.Json;
+using WebRole1.Services;
 
 namespace WebRole1.Controllers
 {
     public class RecipeController : Controller
     {
+       
+
         public List<Recipe> dummyRecipes = new List<Recipe>();
 
         // GET: Recipe
@@ -19,26 +33,57 @@ namespace WebRole1.Controllers
             //QUERY: perform db search for id
             //query result should be stored in Recipe object "recipe"
             //Recipe recipe = ...
+            Recipe recipe;
+            if (id.HasValue)
+            {
+               recipe = DBServices.GetRecipe((int)id);
+               ViewBag.Recipe = recipe;
 
-            //For debug purposes
-            Recipe recipe = new Recipe(
-                6546, 
-                "Burrito Mexicano", 
-                "dbkwolf", 
-                "anchovies,minced beef, tortillas, salsa",
-                "Throw everything in the tortilla", 
-                EnumCuisine.Mexican);
+            }
+            else
+            {
+                return RedirectToAction("Browse", "Home");
+            }
 
-            ViewBag.Recipe = recipe;
-            
-      
             return View();
         }
 
-        public ActionResult Create()
+             
 
+        public ActionResult Create()
         {
-            return View();
+            var userId = this.User?.Identity.GetUserId();
+            if (String.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+
+            
+        }
+
+        public async Task<ActionResult> ConfirmCreateAsync(string name, string imgurl, string description, string ingredients, string process, EnumCuisine cuisine)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString);
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue recipesQueue = queueClient.GetQueueReference("putrecipe");
+
+            var userId = this.User?.Identity.GetUserId();
+
+            Debug.WriteLine("USER ID IS =" + userId);
+
+            string jsonRecipe = JsonSerializer.Serialize(new Recipe(0, name, userId, ingredients, process, DateTime.Today, cuisine, description, imgurl));
+
+            new QueueService().AddMessageToQueue(recipesQueue, jsonRecipe);
+
+            CloudQueue recipesOutQueue = queueClient.GetQueueReference("outrecipe");
+
+            var recipeid = await new QueueService().GetMessageFromQueue(recipesOutQueue);
+
+            return RedirectToAction("Index" , null,  new { id = recipeid });
         }
 
         public ActionResult Edit()
@@ -50,6 +95,8 @@ namespace WebRole1.Controllers
         {
             return View();
         }
+
+      
 
     }
 }
