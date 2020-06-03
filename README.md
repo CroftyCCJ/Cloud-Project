@@ -6,8 +6,9 @@
 The following requirements are for a website application using ASP.NET, MySQL, Azure cloud and C# programming.
 The website will allow users to create and publish recipes as well as to search these by cuisine and name.
 
-## Main Requirements
+## Requirements
 
+### Main Requirements
 - **R1 Log in**
 
     To log in you need to put in a username/email with a correct password
@@ -40,7 +41,8 @@ To create a recipe the user must add the following details: Title, Cuisine (chos
 - **R8 Edit**
 
    Be able to edit recipes, if the user is the owner of the recipe.
-Optional Requirements
+
+### Optional Requirements
 
 - **R9 Comment**
 
