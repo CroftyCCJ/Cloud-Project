@@ -1,4 +1,4 @@
-# Software development for the cloud Project
+# Software development for the cloud - Project  :metal:
 
 ## Project Name: Chefist
 ![GitHub Logo](/View_Chefsit.JPG)
