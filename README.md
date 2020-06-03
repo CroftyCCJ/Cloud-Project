@@ -1,7 +1,7 @@
 # Software development for the cloud Project
 
 ## Project Name: Chefist
-
+![GitHub Logo](/View_Chefsit.JPG)
 ## General Description
 The following requirements are for a website application using ASP.NET, MySQL, Azure cloud and C# programming.
 The website will allow users to create and publish recipes as well as to search these by cuisine and name.
@@ -61,6 +61,10 @@ Optional Requirements
 - **R13 Forgotten password**
  
     Be able recover the password by email. The user may click on “Forgotten password?” after which an email will get sent to the corresponding email containing a link to reset it. 
+
+
+## Architecture
+![GitHub Logo](/chefist_architecture.JPG)
 
 
 ## Database
