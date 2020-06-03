@@ -1,4 +1,4 @@
-# Software development for the cloud - Project  :metal:
+# Software development for the cloud - Project
 ### [Documentation: How-To Run Project](https://github.com/CroftyCCJ/Cloud-Project/wiki/How-To-Run)
 ## Project Name: Chefist
 ![GitHub Logo](/View_Chefsit.JPG)
