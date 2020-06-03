@@ -1,7 +1,7 @@
 # Software development for the cloud - Project
 ### [Documentation: How-To Run Project](https://github.com/CroftyCCJ/Cloud-Project/wiki/How-To-Run)
 ## Project Name: Chefist
-![GitHub Logo](/View_Chefsit.JPG)
+![Chefist Front Page](/View_Chefsit.JPG)
 ## General Description
 The following requirements are for a website application using ASP.NET, MySQL, Azure cloud and C# programming.
 The website will allow users to create and publish recipes as well as to search these by cuisine and name.
@@ -66,7 +66,7 @@ To create a recipe the user must add the following details: Title, Cuisine (chos
 
 
 ## Architecture
-![GitHub Logo](/chefist_architecture.JPG)
+![Chefist Architecture](/chefist_architecture.JPG)
 
 
 ## Database
